@@ -4,13 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>စောမိုးမြင့်စိုး - ကိုယ်ရေးအကျဉ်း</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* လှပသော CSS စတိုင်များ */
+        @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
+        
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --text-color: #1f2937;
+            --light-bg: #f8fafc;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            font-family: 'Padauk', 'Pyidaungsu', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            border-bottom: 1px dashed #d1d5db;
+            position: relative;
+        }
+        
+        header::after {
+            content: "⚽🎥";
+            font-size: 24px;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-item {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-item strong {
+            color: var(--secondary-color);
+            min-width: 150px;
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .strengths {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .strength-item {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .strength-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background-color: rgba(251, 191, 36, 0.2);
+            padding: 0 4px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px dashed #d1d5db;
+            color: #6b7280;
+            font-style: italic;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "✨";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .info-item strong {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>စောမိုးမြင့်စိုး</h1>
-            <p>ကျောင်းသား၊ အားကစားဝါသနာရှင် နှင့် မီဒီယာလေ့လာသူ</p>
+            <p style="font-size: 1.2rem; color: #4b5563;">ကျောင်းသား၊ အားကစားဝါသနာရှင် နှင့် မီဒီယာလေ့လာသူ</p>
         </header>
         
         <section>
@@ -31,45 +215,13 @@
             </div>
         </section>
         
-        <section class="media-studies">
-            <h2>မီဒီယာလေ့လာနည်း ဖော်မြူလာ</h2>
-            <div class="formula-box">
-                <p>မီဒီယာမက်ဆေ့ချ် = အကြောင်းအရာ (Content) + ပုံစံ (Form) + အခြေအနေ (Context)</p>
-                <p class="formula-example">ဥပမာ: သတင်းတစ်ပုဒ် = ဖြစ်ရပ်အချက်အလက် + ရေးသားပုံ/ဓာတ်ပုံ + ထုတ်ဝေသည့်အချိန်နှင့်နေရာ</p>
-            </div>
-            <div class="media-process">
-                <h3>မီဒီယာဖန်တီးမှုဖြစ်စဉ်</h3>
-                <div class="process-steps">
-                    <div class="step">1. ရည်ရွယ်ချက်သတ်မှတ်ခြင်း</div>
-                    <div class="step">2. အကြောင်းအရာရွေးချယ်ခြင်း</div>
-                    <div class="step">3. ဖန်တီးမှုပြုလုပ်ခြင်း</div>
-                    <div class="step">4. ပြန်လည်သုံးသပ်ခြင်း</div>
-                    <div class="step">5. ဖြန့်ချိခြင်း</div>
-                </div>
-            </div>
-        </section>
-        
         <section>
             <h2>မိတ်ဆက်</h2>
-            <p>မင်္ဂလာပါ။ ကျွန်တော့်နာမည်က <strong>စောမိုးမြင့်စိုး</strong> ဖြစ်ပါတယ်။ အခုအခါမှာ <strong>တောင်ကလေးဘုန်းတော်ကြီးသင်ပညာရေးကျောင်း</strong> မှာ <strong>အလယ်တန်း (၇)</strong> ကျောင်းသားတစ်ယောက်အနေနဲ့ ပညာသင်ယူနေပါတယ်။</p>
+            <p>မင်္ဂလာပါ။ ကျွန်တော့်နာမည်က <span class="highlight">စောမိုးမြင့်စိုး</span> ဖြစ်ပါတယ်။ အခုအခါမှာ <span class="highlight">တောင်ကလေးဘုန်းတော်ကြီးသင်ပညာရေးကျောင်း</span> မှာ <span class="highlight">အလယ်တန်း (၇)</span> ကျောင်းသားတစ်ယောက်အနေနဲ့ ပညာသင်ယူနေပါတယ်။</p>
             
-            <p>ကျွန်တော်ဟာ <strong>ဘောလုံးအားကစား</strong> ကို အရမ်းကြိုက်နှစ်သက်ပြီး အားလပ်ချိန်တွေမှာ သူငယ်ချင်းတွေနဲ့အတူ ဘောလုံးကန်ရတာ၊ ပြိုင်ပွဲဝင်ရတာတွေကို အထူးသဘောကျပါတယ်။ အားကစားက ကျွန်တော့်ကို ကျန်းမာရေးကောင်းစေတဲ့အပြင် စည်းလုံးညီညွတ်မှု၊ စိတ်ဓာတ်ကြံ့ခိုင်မှုနဲ့ အသင်းအဖွဲ့နဲ့လုပ်ဆောင်တတ်တဲ့ စွမ်းရည်တွေကိုပါ တိုးတက်စေပါတယ်။</p>
+            <p>ကျွန်တော်ဟာ <span class="highlight">ဘောလုံးအားကစား</span> ကို အရမ်းကြိုက်နှစ်သက်ပြီး အားလပ်ချိန်တွေမှာ သူငယ်ချင်းတွေနဲ့အတူ ဘောလုံးကန်ရတာ၊ ပြိုင်ပွဲဝင်ရတာတွေကို အထူးသဘောကျပါတယ်။ အားကစားက ကျွန်တော့်ကို ကျန်းမာရေးကောင်းစေတဲ့အပြင် စည်းလုံးညီညွတ်မှု၊ စိတ်ဓာတ်ကြံ့ခိုင်မှုနဲ့ အသင်းအဖွဲ့နဲ့လုပ်ဆောင်တတ်တဲ့ စွမ်းရည်တွေကိုပါ တိုးတက်စေပါတယ်။</p>
             
-            <p>ဒါ့အပြင် ကျွန်တော်ဟာ <strong>ဒီဂျစ်တယ်မီဒီယာ</strong> (ဓာတ်ပုံ၊ ဗီဒီယိုတည်းဖြတ်ခြင်း၊ ဆိုရှယ်မီဒီယာ) ကိုလည်း အထူးစိတ်ဝင်စားပြီး လေ့လာသင်ယူနေပါတယ်။ နည်းပညာတိုးတက်လာတဲ့ခေတ်ကြီးမှာ ကိုယ်ပိုင်အရည်အချင်းတွေကို မြှင့်တင်ပြီး အနာဂတ်မှာ <strong>အားကစားသမားနဲ့ မီဒီယာပညာရှင်</strong> တစ်ယောက်အနေနဲ့ အောင်မြင်အောင် ကြိုးစားနေပါတယ်။</p>
-        </section>
-        
-        <section class="football-section">
-            <h2>ကျွန်တော့်ဝါသနာ - ဘောလုံး</h2>
-            <div class="football-pitch">
-                <div class="ball" id="ball"></div>
-                <div class="player" id="player"></div>
-                <div class="goal" id="goal"></div>
-            </div>
-            <div class="football-controls">
-                <button id="kick-btn">ဘောလုံးကန်မယ်!</button>
-                <button id="reset-btn">ပြန်စမယ်</button>
-            </div>
-            <p class="football-tip">ခလုတ်ကိုနှိပ်ပြီး ဘောလုံးကန်ကြည့်ပါ!</p>
+            <p>ဒါ့အပြင် ကျွန်တော်ဟာ <span class="highlight">ဒီဂျစ်တယ်မီဒီယာ</span> (ဓာတ်ပုံ၊ ဗီဒီယိုတည်းဖြတ်ခြင်း၊ ဆိုရှယ်မီဒီယာ) ကိုလည်း အထူးစိတ်ဝင်စားပြီး လေ့လာသင်ယူနေပါတယ်။ နည်းပညာတိုးတက်လာတဲ့ခေတ်ကြီးမှာ ကိုယ်ပိုင်အရည်အချင်းတွေကို မြှင့်တင်ပြီး အနာဂတ်မှာ <span class="highlight">အားကစားသမားနဲ့ မီဒီယာပညာရှင်</span> တစ်ယောက်အနေနဲ့ အောင်မြင်အောင် ကြိုးစားနေပါတယ်။</p>
         </section>
         
         <section>
@@ -78,16 +230,21 @@
                 <span class="strength-item">အသင်းအဖွဲ့နဲ့လုပ်ဆောင်နိုင်စွမ်း</span>
                 <span class="strength-item">သင်ယူလိုစိတ်ပြင်းပြမှု</span>
                 <span class="strength-item">လူမှုဆက်ဆံရေးကောင်းမွန်ခြင်း</span>
-                <span class="strength-item">ဖန်တီးနိုင်စွမ်းရှိခြင်း</span>
-                <span class="strength-item">အားကစားစွမ်းရည်ကောင်းခြင်း</span>
             </div>
         </section>
         
+        <section>
+            <h2>အနာဂတ်ရည်မှန်းချက်</h2>
+            <p>ကျွန်တော်ဟာ ပညာရေး၊ အားကစားနဲ့ နည်းပညာကို ပေါင်းစပ်ပြီး <span class="highlight">အောင်မြင်တဲ့ဘဝတစ်ခု</span> တည်ဆောက်ဖို့ ရည်မှန်းထားပါတယ်။ ဘောလုံးကစားခြင်းက ကျွန်တော့်ကို စည်းကမ်းရှိသူ၊ ဇွဲရှိသူဖြစ်စေပြီး မီဒီယာပညာက ဖန်တီးနိုင်စွမ်းနဲ့ အသစ်အဆန်းတွေကို ရှာဖွေလေ့လာတဲ့စိတ်ကို ဖြစ်ပေါ်စေပါတယ်။</p>
+            
+            <p style="text-align: center; font-size: 1.3rem; font-weight: 700; color: var(--primary-color); margin-top: 30px;">
+                "ကြိုးစားမှုတိုင်းက အနာဂတ်အတွက် ခြေလှမ်းတစ်ခု"
+            </p>
+        </section>
+        
         <footer>
-            ကျေးဇူးတင်ပါတယ်! <span id="current-year"></span>
+            ကျေးဇူးတင်ပါတယ်!
         </footer>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
