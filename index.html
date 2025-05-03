@@ -67,6 +67,23 @@
             padding: 0 15px;
         }
         
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 0 auto 20px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         h1 {
             color: var(--primary-color);
             font-size: 2.8rem;
@@ -128,6 +145,7 @@
             font-weight: 700;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .strength-item:hover {
@@ -169,6 +187,90 @@
             font-size: 20px;
         }
         
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background-color: var(--secondary-color);
+        }
+        
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        #light-theme {
+            background: #f3f4f6;
+        }
+        
+        #dark-theme {
+            background: #1f2937;
+        }
+        
+        /* Dark theme styles */
+        .dark-mode {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            color: #f3f4f6;
+        }
+        
+        .dark-mode .container {
+            background-color: #1f2937;
+            color: #f3f4f6;
+        }
+        
+        .dark-mode h1, 
+        .dark-mode h2,
+        .dark-mode .info-item strong {
+            color: #f59e0b;
+        }
+        
+        .dark-mode .info-box {
+            background-color: #374151;
+            border-color: #4b5563;
+        }
+        
+        .dark-mode footer {
+            color: #9ca3af;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 20px;
@@ -187,14 +289,31 @@
             .info-item strong {
                 margin-bottom: 5px;
             }
+            
+            .theme-switcher {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="theme-switcher">
+        <button id="light-theme" class="theme-btn" title="Light Mode"></button>
+        <button id="dark-theme" class="theme-btn" title="Dark Mode"></button>
+    </div>
+
     <div class="container">
         <header>
+            <img src="https://i.imgur.com/JqYeYnR.jpg" alt="စောမိုးမြင့်စိုး၏ ဓာတ်ပုံ" class="profile-img" id="profileImage">
             <h1>စောမိုးမြင့်စိုး</h1>
             <p style="font-size: 1.2rem; color: #4b5563;">ကျောင်းသား၊ အားကစားဝါသနာရှင် နှင့် မီဒီယာလေ့လာသူ</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon" id="facebook">f</a>
+                <a href="#" class="social-icon" id="messenger">m</a>
+                <a href="#" class="social-icon" id="instagram">i</a>
+            </div>
         </header>
         
         <section>
@@ -243,8 +362,79 @@
         </section>
         
         <footer>
+            <p id="lastUpdated"></p>
             ကျေးဇူးတင်ပါတယ်!
         </footer>
     </div>
+
+    <script>
+        // JavaScript ဖြင့် အပြန်အလှန်လုပ်ဆောင်ချက်များ
+        document.addEventListener('DOMContentLoaded', function() {
+            // နောက်ဆုံးပြင်ဆင်သည့်ရက်စွဲပြသခြင်း
+            const lastUpdated = document.getElementById('lastUpdated');
+            const updateDate = new Date(document.lastModified);
+            lastUpdated.textContent = `နောက်ဆုံးပြင်ဆင်သည့်ရက်: ${updateDate.toLocaleDateString('my-MM', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })}`;
+            
+            // Theme switcher
+            const lightThemeBtn = document.getElementById('light-theme');
+            const darkThemeBtn = document.getElementById('dark-theme');
+            const body = document.body;
+            
+            lightThemeBtn.addEventListener('click', () => {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            });
+            
+            darkThemeBtn.addEventListener('click', () => {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            });
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+            }
+            
+            // Profile image click effect
+            const profileImage = document.getElementById('profileImage');
+            profileImage.addEventListener('click', function() {
+                alert('စောမိုးမြင့်စိုး၏ ကိုယ်ရေးအကျဉ်းကို လာရောက်ကြည့်ရှုပေးသည့်အတွက် ကျေးဇူးတင်ပါတယ်!');
+            });
+            
+            // Strength items click effect
+            const strengthItems = document.querySelectorAll('.strength-item');
+            strengthItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.background = 'linear-gradient(135deg, var(--accent-color), #e67e22)';
+                    setTimeout(() => {
+                        this.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
+                    }, 500);
+                });
+            });
+            
+            // Social media links
+            document.getElementById('facebook').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Facebook လင့်ခ်သို့ သွားမည်');
+                // window.open('https://facebook.com/yourprofile', '_blank');
+            });
+            
+            document.getElementById('messenger').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Messenger လင့်ခ်သို့ သွားမည်');
+            });
+            
+            document.getElementById('instagram').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Instagram လင့်ခ်သို့ သွားမည်');
+            });
+        });
+    </script>
 </body>
 </html>
